@@ -32,32 +32,51 @@ class ImagePostDetailTableViewController: UITableViewController {
     
     @IBAction func createComment(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Add a comment", message: "Write your comment below:", preferredStyle: .alert)
+        // Ask for text or voice comment
+        let commentAlert = UIAlertController(title: "New Comment", message: "Which kind of comment do you want to create?", preferredStyle: .actionSheet)
         
-        var commentTextField: UITextField?
-        
-        alert.addTextField { (textField) in
-            textField.placeholder = "Comment:"
-            commentTextField = textField
-        }
-        
-        let addCommentAction = UIAlertAction(title: "Add Comment", style: .default) { (_) in
+        let textCommentAction = UIAlertAction(title: "Text", style: .default) { (_) in
+            let alert = UIAlertController(title: "Add a comment", message: "Write your comment below:", preferredStyle: .alert)
             
-            guard let commentText = commentTextField?.text else { return }
+            var commentTextField: UITextField?
             
-            self.postController.addComment(with: commentText, to: &self.post!)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            alert.addTextField { (textField) in
+                textField.placeholder = "Comment:"
+                commentTextField = textField
             }
+            
+            let addCommentAction = UIAlertAction(title: "Add Comment", style: .default) { (_) in
+                
+                guard let commentText = commentTextField?.text else { return }
+                
+                self.postController.addComment(with: commentText, to: &self.post!)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(addCommentAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+            
+        let voiceCommentAction = UIAlertAction(title: "Voice Record", style: .default) { (_) in
+            self.performSegue(withIdentifier: "VoiceRecordSegue", sender: self)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        alert.addAction(addCommentAction)
-        alert.addAction(cancelAction)
+        commentAlert.addAction(textCommentAction)
+        commentAlert.addAction(voiceCommentAction)
+        commentAlert.addAction(cancelAction)
         
-        present(alert, animated: true, completion: nil)
+        self.present(commentAlert, animated: true, completion: nil)
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

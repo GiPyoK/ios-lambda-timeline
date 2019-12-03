@@ -556,11 +556,96 @@
                         <outlet property="imageView" destination="Q0L-w5-qUw" id="0v7-ZB-mgi"/>
                         <outlet property="imageViewAspectRatioConstraint" destination="y1B-iX-x3e" id="wIt-kh-Tzd"/>
                         <outlet property="titleLabel" destination="jyy-BX-c2c" id="UEd-xO-ipC"/>
+                        <segue destination="sLT-C0-ETI" kind="presentation" identifier="VoiceRecordSegue" id="VlM-At-37S"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="472.71364317841085"/>
+            <point key="canvasLocation" x="1969" y="475"/>
+        </scene>
+        <!--Voice Record View Controller-->
+        <scene sceneID="xBX-ea-zVp">
+            <objects>
+                <viewController id="sLT-C0-ETI" customClass="VoiceRecordViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ywa-9m-D6M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Your Voice!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RmA-LZ-jYx">
+                                <rect key="frame" x="16" y="52" width="154.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="BmM-kq-K92">
+                                <rect key="frame" x="14" y="153" width="347" height="31"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueO-3n-KBA">
+                                <rect key="frame" x="16" y="127.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EN-lW-r4W">
+                                <rect key="frame" x="317" y="127.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="69" translatesAutoresizingMaskIntoConstraints="NO" id="sMc-Dc-zHi">
+                                <rect key="frame" x="121" y="191" width="133" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddM-yw-PhX">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <state key="normal" title="▶︎">
+                                            <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playPauseButtonPressed:" destination="sLT-C0-ETI" eventType="touchUpInside" id="21c-Rz-ILO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ion-ny-QGK">
+                                        <rect key="frame" x="99" y="0.0" width="34" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="◉">
+                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="recordStopButtonPressed:" destination="sLT-C0-ETI" eventType="touchUpInside" id="Dhp-Oh-mF0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sMc-Dc-zHi" firstAttribute="centerX" secondItem="Ywa-9m-D6M" secondAttribute="centerX" id="1oQ-gC-7uC"/>
+                            <constraint firstItem="ueO-3n-KBA" firstAttribute="top" secondItem="RmA-LZ-jYx" secondAttribute="bottom" constant="55" id="2SA-gk-o4z"/>
+                            <constraint firstItem="ueO-3n-KBA" firstAttribute="leading" secondItem="Tdm-Pf-McW" secondAttribute="leading" constant="16" id="ILo-ya-FKE"/>
+                            <constraint firstItem="Tdm-Pf-McW" firstAttribute="trailing" secondItem="0EN-lW-r4W" secondAttribute="trailing" constant="16" id="b1k-KQ-e8C"/>
+                            <constraint firstItem="BmM-kq-K92" firstAttribute="leading" secondItem="Tdm-Pf-McW" secondAttribute="leading" constant="16" id="cyZ-uv-viA"/>
+                            <constraint firstItem="Tdm-Pf-McW" firstAttribute="trailing" secondItem="BmM-kq-K92" secondAttribute="trailing" constant="16" id="ePW-d8-7l7"/>
+                            <constraint firstItem="RmA-LZ-jYx" firstAttribute="leading" secondItem="Tdm-Pf-McW" secondAttribute="leading" constant="16" id="fXh-D2-6PE"/>
+                            <constraint firstItem="RmA-LZ-jYx" firstAttribute="top" secondItem="Tdm-Pf-McW" secondAttribute="top" constant="52" id="gVW-pP-heZ"/>
+                            <constraint firstItem="BmM-kq-K92" firstAttribute="top" secondItem="ueO-3n-KBA" secondAttribute="bottom" constant="5" id="pwu-AK-q9g"/>
+                            <constraint firstItem="sMc-Dc-zHi" firstAttribute="top" secondItem="BmM-kq-K92" secondAttribute="bottom" constant="8" id="t1U-t7-r5d"/>
+                            <constraint firstItem="0EN-lW-r4W" firstAttribute="top" secondItem="ueO-3n-KBA" secondAttribute="top" id="tpT-t0-0Uc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tdm-Pf-McW"/>
+                    </view>
+                    <connections>
+                        <outlet property="playPauseButton" destination="ddM-yw-PhX" id="vFn-tg-O3S"/>
+                        <outlet property="playbackSlider" destination="BmM-kq-K92" id="HkY-zP-djM"/>
+                        <outlet property="recordStopButton" destination="ion-ny-QGK" id="byA-3d-MFu"/>
+                        <outlet property="timeElapsedLabel" destination="ueO-3n-KBA" id="xGO-ae-y5B"/>
+                        <outlet property="timeRemainingLabel" destination="0EN-lW-r4W" id="stN-d0-e4j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nl7-TM-Q7y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693.5999999999999" y="474.51274362818594"/>
         </scene>
     </scenes>
 </document>
