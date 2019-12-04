@@ -48,15 +48,15 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         let post = postController.posts[indexPath.row]
         
         switch post.mediaType {
-            
         case .image:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePostCell", for: indexPath) as? ImagePostCollectionViewCell else { return UICollectionViewCell() }
             
             cell.post = post
-            
             loadImage(for: cell, forItemAt: indexPath)
-            
             return cell
+        default:
+            print("Not image type")
+            return UICollectionViewCell()
         }
     }
     
@@ -67,14 +67,13 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         let post = postController.posts[indexPath.row]
         
         switch post.mediaType {
-            
         case .image:
-            
             guard let ratio = post.ratio else { return size }
-            
+
             size.height = size.width * ratio
+        default:
+            print("Not image type")
         }
-        
         return size
     }
     

@@ -26,6 +26,7 @@ class VoiceRecordViewController: UIViewController {
     
     // Recording properties
     var audioRecorder: AVAudioRecorder?
+    var recordedURL: URL?
     var isRecording: Bool {
         return audioRecorder?.isRecording ?? false
     }
@@ -51,9 +52,16 @@ class VoiceRecordViewController: UIViewController {
         updateViews()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        recordedURL = nil
+        audioPlayer = nil
+        audioRecorder = nil
+    }
+    
     private func updateViews() {
-        let playButtonTitle = isPlaying ? "⏸" : "▶️"
-        playPauseButton.setTitle(playButtonTitle, for: .normal)
+        playPauseButton.isSelected = isPlaying
         
         let elapsedTime = audioPlayer?.currentTime ?? 0
         timeElapsedLabel.text = timeFormatter.string(from: elapsedTime)
@@ -71,8 +79,7 @@ class VoiceRecordViewController: UIViewController {
             timeRemainingLabel.text = timeFormatter.string(from: 0)
         }
         
-        let recordButtonTitle = isRecording ? "⏹" : "⏺"
-        recordStopButton.setTitle(recordButtonTitle, for: .normal)
+        recordStopButton.isSelected = isRecording
         
         if !isPlaying && !isRecording {
             playPauseButton.isEnabled = true
@@ -158,6 +165,14 @@ class VoiceRecordViewController: UIViewController {
     @IBAction func recordStopButtonPressed(_ sender: Any) {
         toggleRecord()
     }
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        guard let recordedURL = recordedURL else {
+            print("Record your voice first!")
+            return
+        }
+        postController.addVoiceComment(with: recordedURL, to: post) // &self.post!
+        dismiss(animated: true, completion: nil)
+    }
     
 
 }
@@ -186,11 +201,12 @@ extension VoiceRecordViewController: AVAudioRecorderDelegate {
         if flag == true {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: recorder.url)
-                postController.addVoiceComment(with: recorder.url, to: &self.post!)
+                recordedURL = recorder.url
             } catch {
                 print("Error while finishing recording: \(error)")
             }
         }
+        updateViews()
     }
 }
 

@@ -46,14 +46,21 @@ class PostController {
         savePostToFirebase(post)
     }
     
-    func addVoiceComment(with audioURL: URL, to post: inout Post) {
+    func addVoiceComment(with audioURL: URL, to post: Post) { // removed inout for Post
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
+        store(mediaData: audioURL.dataRepresentation, mediaType: .audio) { (dataURL) in
+            guard let dataURL = dataURL else {
+                print("Invalid dataURL returned")
+                return
+            }
+            
+            let comment = Comment(text: nil, audioURL: dataURL.absoluteString, author: author)
+            post.comments.append(comment)
+            print("audiURL: \(dataURL)")
+            self.savePostToFirebase(post)
+        }
         
-        let comment = Comment(text: nil, audioURL: audioURL, author: author)
-        post.comments.append(comment)
-        
-        savePostToFirebase(post)
     }
 
     func observePosts(completion: @escaping (Error?) -> Void) {
