@@ -97,11 +97,57 @@
                     <connections>
                         <segue destination="1Aw-4e-BW2" kind="show" identifier="AddImagePost" id="jaI-fq-Woc"/>
                         <segue destination="OyM-8q-Icp" kind="show" identifier="ViewImagePost" id="hhs-es-AdQ"/>
+                        <segue destination="ukv-5y-lsN" kind="show" identifier="AddVideoPost" id="4Cf-hL-jJ7"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRz-lg-pQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1216.8" y="108.39580209895054"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="PtG-kJ-oxl">
+            <objects>
+                <viewController id="ukv-5y-lsN" customClass="CameraViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aFj-t1-EDM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FU-Y4-9a1">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lj-Vj-HPu">
+                                <rect key="frame" x="172" y="584" width="31" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="largecircle.fill.circle" catalog="system">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="26" scale="default"/>
+                                </state>
+                                <state key="selected" image="square.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="26" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordStopButtonPressed:" destination="sLT-C0-ETI" eventType="touchUpInside" id="dVC-jx-LFa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8FU-Y4-9a1" firstAttribute="top" secondItem="KMD-Kb-BK9" secondAttribute="top" id="0oL-c8-GHc"/>
+                            <constraint firstItem="KMD-Kb-BK9" firstAttribute="bottom" secondItem="2Lj-Vj-HPu" secondAttribute="bottom" constant="40" id="AGP-Y2-j9F"/>
+                            <constraint firstItem="8FU-Y4-9a1" firstAttribute="bottom" secondItem="KMD-Kb-BK9" secondAttribute="bottom" id="Mc7-l9-l1s"/>
+                            <constraint firstItem="8FU-Y4-9a1" firstAttribute="leading" secondItem="KMD-Kb-BK9" secondAttribute="leading" id="NG7-8G-gQR"/>
+                            <constraint firstItem="2Lj-Vj-HPu" firstAttribute="centerX" secondItem="aFj-t1-EDM" secondAttribute="centerX" id="dtL-Wi-t4P"/>
+                            <constraint firstItem="8FU-Y4-9a1" firstAttribute="trailing" secondItem="KMD-Kb-BK9" secondAttribute="trailing" id="tvO-zs-T1i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KMD-Kb-BK9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zAC-3u-OxU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hjb-vZ-h7t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1968.8" y="-882.00899550224892"/>
         </scene>
         <!--Title-->
         <scene sceneID="kP9-yp-I8H">
@@ -647,7 +693,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="sMc-Dc-zHi">
-                                <rect key="frame" x="148.5" y="191" width="78.5" height="43"/>
+                                <rect key="frame" x="148" y="191" width="79.5" height="43"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddM-yw-PhX">
                                         <rect key="frame" x="0.0" y="0.0" width="18.5" height="43"/>
@@ -663,8 +709,8 @@
                                             <action selector="playPauseButtonPressed:" destination="sLT-C0-ETI" eventType="touchUpInside" id="21c-Rz-ILO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ion-ny-QGK">
-                                        <rect key="frame" x="54.5" y="0.0" width="24" height="43"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ion-ny-QGK">
+                                        <rect key="frame" x="54.5" y="0.0" width="25" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="largecircle.fill.circle" catalog="system">

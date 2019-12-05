@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseUI
+import AVFoundation
 
 class PostsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -22,6 +23,44 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
+    private func showCamera() {
+        performSegue(withIdentifier: "AddVideoPost", sender: <#T##Any?#>)
+    }
+    
+    private func requestPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { (granted) in
+            guard granted else {
+                fatalError("Tell user they need to enable privacy for Video/Camera/Microphone")
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.showCamera()
+            }
+            
+        }
+    }
+    
+    private func requestPermissionAndShowCamera() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch status {
+        case .notDetermined:
+            // First time user has seen the dialog, don't have permission
+            requestPermission()
+        case .restricted:
+            // Parental controls
+            fatalError("Video is disabled for parental controls")
+        case .denied:
+            // Asked for permission and user said no
+            fatalError("Tell user they need to enable privacy for Video/Camera/Microphone")
+        case .authorized:
+            // Asked for permission and user said yes
+            showCamera()
+        @unknown default:
+            fatalError("A new status was added that we need to handle")
+        }
+    }
+    
     @IBAction func addPost(_ sender: Any) {
         
         let alert = UIAlertController(title: "New Post", message: "Which kind of post do you want to create?", preferredStyle: .actionSheet)
@@ -30,9 +69,14 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             self.performSegue(withIdentifier: "AddImagePost", sender: nil)
         }
         
+        let videoPostAction = UIAlertAction(title: "Video", style: .default) { (_) in
+            self.requestPermissionAndShowCamera()
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(imagePostAction)
+        alert.addAction(videoPostAction)
         alert.addAction(cancelAction)
         
         self.present(alert, animated: true, completion: nil)
