@@ -24,7 +24,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func showCamera() {
-        performSegue(withIdentifier: "AddVideoPost", sender: <#T##Any?#>)
+        performSegue(withIdentifier: "AddVideoPost", sender: self)
     }
     
     private func requestPermission() {
