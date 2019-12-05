@@ -29,6 +29,7 @@
 		46D571F32172D43B00E7FF73 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F22172D43B00E7FF73 /* Cache.swift */; };
 		46D571F52173CF3E00E7FF73 /* UIImage+Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F42173CF3E00E7FF73 /* UIImage+Ratio.swift */; };
 		46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */; };
+		A6313EF123987B1C00368D32 /* ComentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6313EF023987B1C00368D32 /* ComentTableViewCell.swift */; };
 		A6B125E62395E4DD006D441A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6B125E52395E4DC006D441A /* GoogleService-Info.plist */; };
 		A6B125E82395E6F8006D441A /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B125E72395E6F8006D441A /* UIImage+Scaling.swift */; };
 		A6B125EA2397113A006D441A /* VoiceRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B125E92397113A006D441A /* VoiceRecordViewController.swift */; };
@@ -63,6 +64,7 @@
 		46D571F42173CF3E00E7FF73 /* UIImage+Ratio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ratio.swift"; sourceTree = "<group>"; };
 		46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePostDetailTableViewController.swift; sourceTree = "<group>"; };
 		5D2CCD6C68779B0A70AC37FA /* Pods-LambdaTimeline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LambdaTimeline.release.xcconfig"; path = "Pods/Target Support Files/Pods-LambdaTimeline/Pods-LambdaTimeline.release.xcconfig"; sourceTree = "<group>"; };
+		A6313EF023987B1C00368D32 /* ComentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComentTableViewCell.swift; sourceTree = "<group>"; };
 		A6B125E52395E4DC006D441A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A6B125E72395E6F8006D441A /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
 		A6B125E92397113A006D441A /* VoiceRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				46CFE7022171572600E7FF73 /* ImagePostCollectionViewCell.swift */,
+				A6313EF023987B1C00368D32 /* ComentTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				46CFE6F521707D0000E7FF73 /* ImagePostViewController.swift in Sources */,
 				46CFE6FF2171556D00E7FF73 /* ConcurrentOperation.swift in Sources */,
 				46463790216FFD1B00E7FF73 /* Post.swift in Sources */,
+				A6313EF123987B1C00368D32 /* ComentTableViewCell.swift in Sources */,
 				46CFE6F32170757F00E7FF73 /* User+DictionaryRepresentation.swift in Sources */,
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
